@@ -1,0 +1,66 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    name: Build Project and Create Release
+    runs-on: macos-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.0
+
+      - name: Node
+        uses: actions/setup-node@v6.0.0
+        with:
+          node-version: "22.22.0"
+
+      # 读取 package.json 里的 version
+      - name: Get version
+        id: read_version
+        run: |
+          VERSION=$(jq -r '.version' package.json)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      # 读取 CHANGELOG.md 里的更新记录
+      - name: Get changelog body
+        id: read_changelog
+        run: |
+          awk -v ver="${{ steps.read_version.outputs.version }}" '
+            /^## / {
+              if (found) exit
+              if ($0 ~ "^## " ver "( |$)" ) { found=1; next }
+              next
+            }
+            found { print }
+          ' CHANGELOG.md >> RELEASE.md
+
+      # 查看 RELEASE.md
+      - name: RELEASE.md
+        run: cat RELEASE.md
+
+      # 安装前端依赖
+      - name: Install
+        run: npm i --prefix=frontend
+
+      # 打包前端代码
+      - name: Build frontend
+        run: npm run build --prefix=frontend
+
+      # 打包后端代码
+      - name: Build backend
+        run: cd backend && tar -czvf ../jumpsso.${{ steps.read_version.outputs.version}}.tar.gz .
+
+      # 发布文件
+      - name: Release
+        uses: ncipollo/release-action@v1.20.0
+        with:
+          tag: v${{ steps.read_version.outputs.version}}
+          name: v${{ steps.read_version.outputs.version}}
+          bodyFile: RELEASE.md
+          artifacts: "jumpsso.${{ steps.read_version.outputs.version}}.tar.gz"
+          token: ${{ secrets.GITHUB_TOKEN }}

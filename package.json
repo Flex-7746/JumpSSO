@@ -1,0 +1,10 @@
+{
+  "name": "jumpsso",
+  "version": "0.0.1",
+  "scripts": {
+    "install": "npm i --prefix=backend && npm i --prefix=frontend",
+    "dev:frontend": "npm run dev --prefix=frontend",
+    "dev:backend": "npm run dev --prefix=backend",
+    "build:frontend": "npm run build --prefix=frontend"
+  }
+}

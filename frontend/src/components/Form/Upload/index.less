@@ -1,0 +1,45 @@
+.g-form-upload {
+  position: relative;
+
+  > .box {
+    &:not(:first-child) {
+      margin-top: 6px;
+    }
+
+    > .item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+      padding: 0 6px 0 16px;
+      border-radius: 6px;
+      background-color: #eee;
+
+      &:not(:first-child) {
+        margin-top: 6px;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #4096ff;
+      }
+
+      > .fx-1 {
+        flex: 1;
+      }
+
+      > .err {
+        color: red;
+        line-height: 32px;
+      }
+    }
+  }
+}

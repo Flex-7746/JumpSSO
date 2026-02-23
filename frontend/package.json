@@ -1,0 +1,47 @@
+{
+  "name": "flex_sso",
+  "scripts": {
+    "dev": "vite --mode fat --host",
+    "build": "tsc -b && vite build --mode prod",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.1.0",
+    "@reduxjs/toolkit": "^2.11.2",
+    "@wecom/jssdk": "^2.3.3",
+    "antd": "^6.2.1",
+    "axios": "^1.13.2",
+    "dayjs": "^1.11.19",
+    "dingtalk-jsapi": "^3.2.5",
+    "i18next": "^25.7.4",
+    "js-md5": "^0.8.3",
+    "lodash": "^4.17.21",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-i18next": "^16.5.3",
+    "react-qr-code": "^2.0.18",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.12.0",
+    "redux-persist": "^6.0.0",
+    "sortablejs": "^1.15.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/lodash": "^4.17.23",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@types/sortablejs": "^1.15.9",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eruda": "^3.4.3",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "less": "^4.5.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^7.2.4"
+  }
+}
