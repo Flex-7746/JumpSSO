@@ -1,0 +1,117 @@
+#mobile-page-sign-login {
+  position: relative;
+  height: 100%;
+
+  > .error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.24rem;
+    width: 6.5rem;
+
+    > .title {
+      font-size: 0.4rem;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    > .content {
+      font-size: 0.28rem;
+      color: #999;
+      line-height: 0.48rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  > .view {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > .title {
+      width: 100%;
+      height: 0.8rem;
+      font-size: 0.24rem;
+      line-height: 0.8rem;
+      color: #999;
+      text-align: center;
+      white-space: nowrap;
+      border-bottom: solid 0.02rem #eee;
+    }
+
+    > .app {
+      flex: 1;
+      width: 6.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.24rem;
+
+      > .logo {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .i {
+          border-radius: 0.24rem;
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+
+      > .title {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        > .t {
+          font-size: 0.48rem;
+          font-weight: 600;
+          line-height: 0.64rem;
+          color: #333;
+        }
+
+        > .ant-tag {
+          position: absolute;
+          left: 100%;
+          top: 50%;
+          transform: translate(0.24rem, -50%);
+        }
+      }
+
+      > .content {
+        font-size: 0.32rem;
+        line-height: 0.48rem;
+        color: #999;
+        word-break: break-all;
+      }
+    }
+
+    > .confirm {
+      position: relative;
+      height: 2.4rem;
+      width: 100%;
+
+      > .btn {
+        position: absolute;
+        height: 1rem;
+        top: 0.24rem;
+        left: 0.24rem;
+        right: 0.24rem;
+        font-size: 0.32rem;
+      }
+    }
+  }
+}

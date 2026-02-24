@@ -1,0 +1,64 @@
+#app-header {
+  position: relative;
+  border-bottom: 1px solid var(--g-border-color);
+
+  > .g-container {
+    @h: 46px;
+
+    display: flex;
+    align-items: center;
+    height: @h;
+
+    > .left {
+      width: 200px;
+      display: flex;
+      align-items: center;
+
+      > .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        > .i {
+          height: @h * 0.5;
+          width: @h * 0.5;
+        }
+
+        > .t {
+          font-size: 20px;
+          font-weight: 800;
+        }
+      }
+    }
+
+    > .center {
+      flex: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > .menu {
+        --ant-tabs-horizontal-item-gutter: 64px;
+
+        > .ant-tabs-nav {
+          margin: 0;
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+
+    > .right {
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      > .avatar {
+        cursor: pointer;
+      }
+    }
+  }
+}

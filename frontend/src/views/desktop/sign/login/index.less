@@ -1,0 +1,82 @@
+#page-sign-login {
+  width: 550px;
+  margin: 0 auto;
+  padding: 96px 48px;
+
+  &.mini {
+    width: 340px;
+  }
+
+  .content-view {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .app-view {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+
+    .logo {
+      border-radius: 12px;
+    }
+
+    > .text {
+      flex: 1;
+      overflow: hidden;
+
+      > .t1 {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        > .t {
+          font-size: 24px;
+          font-weight: 600;
+          line-height: 32px;
+          color: #333;
+        }
+      }
+
+      > .t2 {
+        font-size: 14px;
+        line-height: 24px;
+        color: #999;
+        margin: 0;
+        word-break: break-all;
+      }
+    }
+  }
+
+  .auth-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > .img {
+      width: 180px;
+      height: 180px;
+    }
+
+    > .text {
+      font-size: 12px;
+      white-space: nowrap;
+      color: #999;
+      margin: 8px 0 12px;
+    }
+
+    > .btn {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 180px;
+
+      > * {
+        width: 100%;
+      }
+    }
+  }
+}
