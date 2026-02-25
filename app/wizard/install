@@ -1,0 +1,33 @@
+[
+  {
+    "stepTitle": "服务配置",
+    "items": [
+      {
+        "type": "tips",
+        "helpText": "建议阅读：<a target=\"_blank\" href=\"https://github.com/Flex-7746/JumpSSO/blob/main/docs/use/feiniu/README.md\">飞牛配置说明</a>"
+      },
+      {
+        "type": "text",
+        "field": "wizard_sso_server",
+        "label": "外部服务地址",
+        "initValue": "http://localhost:17746"
+      },
+      {
+        "type": "text",
+        "field": "wizard_sso_port",
+        "label": "本地服务端口",
+        "initValue": "17746"
+      },
+      {
+        "type": "text",
+        "field": "wizard_sso_redis",
+        "label": "Redis 配置"
+      },
+      {
+        "type": "text",
+        "field": "wizard_sso_mysql",
+        "label": "MySQL 配置"
+      }
+    ]
+  }
+]

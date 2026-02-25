@@ -1,0 +1,22 @@
+{
+    "data-share": {
+        "shares": [
+            {
+                "name": "jumpsso/runtime",
+                "permission": {
+                    "rw": [
+                        "jumpsso"
+                    ]
+                }
+            },
+            {
+                "name": "jumpsso/public",
+                "permission": {
+                    "rw": [
+                        "jumpsso"
+                    ]
+                }
+            }
+        ]
+    }
+}

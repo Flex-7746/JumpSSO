@@ -1,0 +1,13 @@
+{
+    ".url": {
+        "jumpsso.Main": {
+            "title": "JumpSSO",
+            "icon": "images/icon_{0}.png",
+            "type": "url",
+            "protocol": "",
+            "port": "17746",
+            "url": "/",
+            "allUsers": false
+        }
+    }
+}

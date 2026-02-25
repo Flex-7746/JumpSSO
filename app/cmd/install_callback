@@ -1,0 +1,21 @@
+#!/bin/bash
+
+### This script is called after the user installs the application.
+
+# node 目录
+export PATH=/var/apps/nodejs_v22/target/bin:$PATH
+
+# npm 缓存
+export npm_config_cache=${TRIM_APPDEST}/.npm-cache
+export npm_config_tmp=${TRIM_APPDEST}/.npm-tmp
+
+# 用户目录
+IFS=':' read -r -a SHARE_PATHS <<< "$TRIM_DATA_SHARE_PATHS"
+
+# 软链挂载
+ln -sf ${SHARE_PATHS[0]} ${TRIM_APPDEST}/server/runtime
+ln -sf ${SHARE_PATHS[1]} ${TRIM_APPDEST}/server/public
+
+# 安装依赖
+cd ${TRIM_APPDEST}/server
+npm i --registry=https://registry.npmmirror.com --sqlite3_binary_host_mirror=https://registry.npmmirror.com/-/binary/sqlite3
