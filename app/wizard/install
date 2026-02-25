@@ -1,10 +1,10 @@
 [
   {
-    "stepTitle": "服务配置",
+    "stepTitle": "配置",
     "items": [
       {
         "type": "tips",
-        "helpText": "建议阅读：<a target=\"_blank\" href=\"https://github.com/Flex-7746/JumpSSO/blob/main/docs/use/feiniu/README.md\">飞牛配置说明</a>"
+        "helpText": "建议阅读：<a target=\"_blank\" href=\"https://github.com/Flex-7746/JumpSSO/blob/main/docs/use/feiniu/README.md\">飞牛 NAS 部署 JumpSSO</a>"
       },
       {
         "type": "text",

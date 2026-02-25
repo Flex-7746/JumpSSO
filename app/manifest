@@ -1,5 +1,6 @@
 appname=jumpsso
 version=0.0.1
+changelog=changelog
 desc=支持私有部署的轻量单点登录服务器，支持主流的 OIDC、SAML2 客户端接入使用，支持将飞书、钉钉、企微、飞书作为用户身份源，可实现一站通免密码登录，解决企业内部各类系统不同账户的登录问题。
 platform=x86
 display_name=JumpSSO

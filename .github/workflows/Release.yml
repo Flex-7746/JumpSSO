@@ -19,12 +19,23 @@ jobs:
         with:
           node-version: "22.22.0"
 
-      # 读取 package.json 里的 version
+      # 读取 package.json 里的 version 和 changelog 作为 app/manifest 里的配置
       - name: Get version
         id: read_version
         run: |
           VERSION=$(jq -r '.version' package.json)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+      - name: Update version in manifest file
+        run: |
+          sed -i '' "s|version=0.0.1|version=${{ steps.read_version.outputs.version }}|" app/manifest
+      - name: Get changelog
+        id: read_log
+        run: |
+          CHANGELOG=$(jq -r '.changelog' package.json)
+          echo "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
+      - name: Update changelog in manifest file
+        run: |
+          sed -i '' "s|changelog=changelog|changelog=${{ steps.read_log.outputs.changelog }}|" app/manifest
 
       # 读取 CHANGELOG.md 里的更新记录
       - name: Get changelog body
@@ -53,7 +64,35 @@ jobs:
 
       # 打包后端代码
       - name: Build backend
-        run: cd backend && tar -czvf ../jumpsso.${{ steps.read_version.outputs.version}}.tar.gz .
+        run: |
+          rm -rf ./app/app/server
+          cp -R ./backend ./app/app/server
+          cd backend
+          tar -czvf ../jumpsso.${{ steps.read_version.outputs.version}}.tar.gz .
+
+      # 打包飞牛 x86 文件
+      - name: Build x86 fnpack package
+        run: |
+          chmod +x ./build/fnpack-1.2.0-darwin-arm64
+          ./build/fnpack-1.2.0-darwin-arm64 build app
+      - name: Rename x86 package
+        run: mv jumpsso.fpk jumpsso.${{ steps.read_version.outputs.version}}.x86.fpk
+
+      # 打包 arm 文件
+      - name: Update arm platform in manifest file
+        run: |
+          sed -i '' "s|platform=x86|platform=arm|" app/manifest
+      - name: Build arm package
+        run: |
+          chmod +x ./build/fnpack-1.2.0-darwin-arm64
+          ./build/fnpack-1.2.0-darwin-arm64 build app
+      - name: Rename arm package
+        run: mv jumpsso.fpk jumpsso.${{ steps.read_version.outputs.version}}.arm.fpk
+
+      # 查看文件
+      - name: show files
+        run: |
+          ls -aa
 
       # 发布文件
       - name: Release
@@ -62,5 +101,5 @@ jobs:
           tag: v${{ steps.read_version.outputs.version}}
           name: v${{ steps.read_version.outputs.version}}
           bodyFile: RELEASE.md
-          artifacts: "jumpsso.${{ steps.read_version.outputs.version}}.tar.gz"
+          artifacts: "jumpsso.${{ steps.read_version.outputs.version}}.tar.gz,jumpsso.${{ steps.read_version.outputs.version}}.x86.fpk,jumpsso.${{ steps.read_version.outputs.version}}.arm.fpk"
           token: ${{ secrets.GITHUB_TOKEN }}
