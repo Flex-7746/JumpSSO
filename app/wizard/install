@@ -9,14 +9,20 @@
       {
         "type": "text",
         "field": "wizard_sso_server",
-        "label": "外部服务地址",
+        "label": "外部服务链接",
         "initValue": "http://localhost:17746"
       },
       {
         "type": "text",
         "field": "wizard_sso_port",
         "label": "本地服务端口",
-        "initValue": "17746"
+        "initValue": "17746",
+        "rules": [
+          {
+            "required": true,
+            "message": "请输入本地服务端口"
+          }
+        ]
       },
       {
         "type": "text",

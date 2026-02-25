@@ -6,10 +6,9 @@
 
 ## 部署
 
-支持几种部署方式：
-
 - [NodeJS 部署](docs/use/nodejs/README.md)
 - [Docker 部署](docs/use/docker/README.md)
+- [飞牛部署](docs/use/feiniu/README.md)
 
 ## 鸣谢
 

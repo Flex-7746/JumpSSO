@@ -5,7 +5,7 @@
             "icon": "images/icon_{0}.png",
             "type": "url",
             "protocol": "",
-            "port": "17746",
+            "port": "${wizard_sso_port}",
             "url": "/",
             "allUsers": false
         }

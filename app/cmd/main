@@ -37,8 +37,7 @@ start_process() {
     printf "%s" "$!" > ${PID_FILE}
 
     # 打印 PID 信息到日志
-    log_msg "Process started with PID: $!"
-    log_msg "PID saved to: ${PID_FILE}"
+    log_msg "Process started with PID: $!, PID saved to: ${PID_FILE}"
 
     return 0
 }
