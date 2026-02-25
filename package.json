@@ -1,6 +1,6 @@
 {
   "name": "jumpsso",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "changelog": "",
   "scripts": {
     "install": "npm i --prefix=backend && npm i --prefix=frontend",
