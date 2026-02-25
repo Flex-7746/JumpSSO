@@ -20,3 +20,7 @@
 ## 记录
 
 [![记录](https://api.star-history.com/svg?repos=Flex-7746/jumpsso&type=timeline&legend=top-left)](https://www.star-history.com/#Flex-7746/jumpsso&type=timeline&legend=top-left)
+
+## 其他
+
+我正在观望新的工作机会，岗位为前端/全栈开发工程师，工作地方期望为中国武汉本地或全球远程办公（中文环境），如果您认可我的能力，欢迎于 issues 中进行洽谈。

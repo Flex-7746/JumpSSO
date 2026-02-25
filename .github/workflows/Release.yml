@@ -4,11 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-release:
-    name: Build Project and Create Release
-    runs-on: macos-latest
-    permissions:
-      contents: write
+  build:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -27,7 +24,7 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Update version in manifest file
         run: |
-          sed -i '' "s|version=0.0.1|version=${{ steps.read_version.outputs.version }}|" app/manifest
+          sed -i "s|version=0.0.1|version=${{ steps.read_version.outputs.version }}|" app/manifest
       - name: Get changelog
         id: read_log
         run: |
@@ -35,7 +32,7 @@ jobs:
           echo "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
       - name: Update changelog in manifest file
         run: |
-          sed -i '' "s|changelog=changelog|changelog=${{ steps.read_log.outputs.changelog }}|" app/manifest
+          sed -i "s|changelog=changelog|changelog=${{ steps.read_log.outputs.changelog }}|" app/manifest
 
       # 读取 CHANGELOG.md 里的更新记录
       - name: Get changelog body
@@ -49,10 +46,6 @@ jobs:
             }
             found { print }
           ' CHANGELOG.md >> RELEASE.md
-
-      # 查看 RELEASE.md
-      - name: RELEASE.md
-        run: cat RELEASE.md
 
       # 安装前端依赖
       - name: Install
@@ -73,24 +66,23 @@ jobs:
       # 打包飞牛 x86 文件
       - name: Build x86 fnpack package
         run: |
-          chmod +x ./build/fnpack-1.2.0-darwin-arm64
-          ./build/fnpack-1.2.0-darwin-arm64 build app
+          chmod +x ./build/fnpack-1.2.1-linux-amd64
+          ./build/fnpack-1.2.1-linux-amd64 build app
       - name: Rename x86 package
         run: mv jumpsso.fpk jumpsso.${{ steps.read_version.outputs.version}}.x86.fpk
 
       # 打包 arm 文件
       - name: Update arm platform in manifest file
         run: |
-          sed -i '' "s|platform=x86|platform=arm|" app/manifest
+          sed -i "s|platform=x86|platform=arm|" app/manifest
       - name: Build arm package
         run: |
-          chmod +x ./build/fnpack-1.2.0-darwin-arm64
-          ./build/fnpack-1.2.0-darwin-arm64 build app
+          chmod +x ./build/fnpack-1.2.1-linux-amd64
+          ./build/fnpack-1.2.1-linux-amd64 build app
       - name: Rename arm package
         run: mv jumpsso.fpk jumpsso.${{ steps.read_version.outputs.version}}.arm.fpk
 
-      # 查看文件
-      - name: show files
+      - name: Show File
         run: |
           ls -aa
 
@@ -103,3 +95,18 @@ jobs:
           bodyFile: RELEASE.md
           artifacts: "jumpsso.${{ steps.read_version.outputs.version}}.tar.gz,jumpsso.${{ steps.read_version.outputs.version}}.x86.fpk,jumpsso.${{ steps.read_version.outputs.version}}.arm.fpk"
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      # 登录 Docker
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 发布镜像
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/jumpsso:v${{ steps.read_version.outputs.version }}
