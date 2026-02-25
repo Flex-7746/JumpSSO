@@ -88,3 +88,7 @@ npm run prod -- --redis=:password@host:port/database
 ```bash
 npm run prod -- --mysql=username:password@host:port/database
 ```
+
+## 使用
+
+[JumpSSO 使用说明](../../README.md)

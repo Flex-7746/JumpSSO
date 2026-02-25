@@ -1,6 +1,6 @@
 # JumpSSO
 
-支持私有部署的轻量单点登录服务器，支持主流的 OIDC、SAML2 客户端接入使用，支持将飞书、钉钉、企微、飞书作为用户身份源，可实现一站通免密码登录，解决企业内部各类系统不同账户的登录问题。
+支持私有部署的轻量单点登录服务器，支持主流的 OIDC、SAML2 客户端接入使用，支持将飞书、钉钉、企微、飞牛作为用户身份源，可实现一站通免密码登录，解决企业内部各类系统不同账户的登录问题。
 
 [使用说明](docs/README.md)
 
@@ -8,7 +8,7 @@
 
 - [NodeJS 部署](docs/use/nodejs/README.md)
 - [Docker 部署](docs/use/docker/README.md)
-- [飞牛部署](docs/use/feiniu/README.md)
+- [飞牛 NAS 部署](docs/use/feiniu/README.md)
 
 ## 鸣谢
 
