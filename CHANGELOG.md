@@ -1,5 +1,9 @@
 # 更新日志
 
+## 0.1.0
+
+- 新增映射功能，配置说明：[使用映射功能进行灵活登录](https://github.com/Flex-7746/JumpSSO/blob/main/docs/user/mapping/README.md)
+
 ## 0.0.3
 
 - 代码优化
