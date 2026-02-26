@@ -19,7 +19,7 @@
 
 ## 记录
 
-[![记录](https://api.star-history.com/svg?repos=Flex-7746/jumpsso&type=timeline&legend=top-left)](https://www.star-history.com/#Flex-7746/jumpsso&type=timeline&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=Flex-7746/jumpsso&type=timeline&legend=top-left)](https://www.star-history.com/#Flex-7746/jumpsso&type=timeline&legend=top-left)
 
 ## 其他
 
