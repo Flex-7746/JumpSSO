@@ -1,5 +1,7 @@
 import { Tabs } from 'antd'
 
+import Mapping from './Mapping'
+
 import appHelper from '@/utils/appHelper'
 
 import channelItems from '@/const/channel/items'
@@ -9,7 +11,13 @@ const Component = () => {
 
   return (
     <div className="g-container">
-      <Tabs items={channelItems.map((i) => ({ label: t(i.label), key: i.config, children: <i.admin config={i.config} /> }))} />
+      <Tabs
+        items={[
+          ...channelItems.map((i) => ({ label: t(i.label), key: i.config, children: <i.admin config={i.config} /> })),
+
+          { label: t('映射'), key: 'mapping', children: <Mapping /> },
+        ]}
+      />
     </div>
   )
 }

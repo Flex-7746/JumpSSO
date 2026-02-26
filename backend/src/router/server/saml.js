@@ -1,7 +1,7 @@
 const login = _require("utils/login");
 const saml = _require("utils/saml");
 const utils = _require("utils/saml/utils");
-const replaceFlag = _require("utils/replaceFlag");
+const getUserFlag = _require("utils/getUserFlag");
 
 module.exports = [
   {
@@ -53,6 +53,8 @@ module.exports = [
       const entry = target.toJSON();
       const config = utils.getConfig(entry);
 
+      const userid = await getUserFlag({ ctx, str: config.userFlag, user, entry });
+
       const info = method === "get" ? { type: "redirect", value: query } : { type: "post", value: body };
 
       const sp = saml.ServiceProvider({
@@ -88,7 +90,7 @@ module.exports = [
             sp,
             idp,
             requestInfo,
-            userid: replaceFlag.user(config.userFlag, user),
+            userid,
             attrs: config.attribute.reduce((attrs, i) => {
               const key = i.right.split("");
               key[0] = key[0].toLocaleUpperCase();

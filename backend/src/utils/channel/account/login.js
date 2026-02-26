@@ -14,7 +14,7 @@ module.exports = async function login(opt) {
     if (target) {
       const config = JSON.parse(target.value);
       if (!config.open) {
-        throw { message: "没有启用钉钉登录" };
+        throw { message: "没有启用内置登录" };
       }
     }
 

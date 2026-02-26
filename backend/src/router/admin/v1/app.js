@@ -48,6 +48,30 @@ module.exports = [
     },
   },
   {
+    method: "get",
+    path: "/app/list/simplify",
+    handler: async ({ ctx }) => {
+      const where = { status: 1 };
+      const order = ["create_date", "ASC"];
+
+      return ctx.$ok(
+        await ctx.$db.App.findAll({
+          where,
+          order: [order],
+          attributes: ["id", "name"],
+          include: {
+            model: ctx.$db.Entry,
+            as: "entryData",
+            required: false,
+            where,
+            order: [order],
+            attributes: ["client", "name"],
+          },
+        }),
+      );
+    },
+  },
+  {
     method: "post",
     path: "/app/add",
     handler: async ({ ctx, body }) => {

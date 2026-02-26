@@ -1,6 +1,6 @@
 const login = _require("utils/login");
 const getConfig = _require("utils/oidc/getConfig");
-const replaceFlag = _require("utils/replaceFlag");
+const getUserFlag = _require("utils/getUserFlag");
 
 module.exports = [
   {
@@ -25,14 +25,15 @@ module.exports = [
 
         // 登录
         if (prompt.name === "login") {
-          const entry = await $db.Entry.findOne({ where: { status: 1, type: 1, client: oidcDetails.params.client_id } });
-          if (!entry) {
+          const target = await $db.Entry.findOne({ where: { status: 1, type: 1, client: oidcDetails.params.client_id } });
+          if (!target) {
             return;
           }
 
+          const entry = target.toJSON();
           const config = getConfig(entry);
 
-          const accountId = replaceFlag.user(config.userFlag, user);
+          const accountId = await getUserFlag({ ctx, str: config.userFlag, user, entry });
 
           await ctx.$cache(accountId, user.openid);
 
