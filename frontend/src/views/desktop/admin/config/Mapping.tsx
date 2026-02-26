@@ -80,7 +80,7 @@ const Component = () => {
           onChange={(v) => setView(v.target.value)}
         />
 
-        <Tag>映射优先级：原始标识 -&gt; 用户映射 -&gt; 应用映射</Tag>
+        <Tag>映射顺序：原始标识 -&gt; 用户映射 -&gt; 应用映射</Tag>
 
         <div style={{ flex: 1 }}></div>
 
