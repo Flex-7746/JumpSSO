@@ -4,7 +4,7 @@
 
 ```bash
 # 拉取镜像
-docker pull flex7746/jumpsso:v0.0.1
+docker pull flex7746/jumpsso:v0.2.0
 
 # 运行服务
 docker run -d \
@@ -16,7 +16,7 @@ docker run -d \
   -e SSO_SERVER="https://sso.example.com" \
   -e SSO_REDIS="redis://redis-host:6379" \
   -e SSO_MYSQL="mysql://user:pass@mysql-host:3306/sso" \
-  flex7746/jumpsso:v0.0.1
+  flex7746/jumpsso:v0.2.0
 ```
 
 ## 说明
@@ -48,7 +48,7 @@ docker run -d \
   -v $(pwd)/runtime:/sso/runtime \
   -v $(pwd)/public:/sso/public \
   -e SSO_SERVER="https://abc.com:8080" \
-  flex7746/jumpsso:v0.0.1
+  flex7746/jumpsso:v0.2.0
 ```
 
 ## 使用
