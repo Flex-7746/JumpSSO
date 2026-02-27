@@ -4,6 +4,8 @@
 
 [使用说明](docs/README.md)
 
+[更新日志](CHANGELOG.md)
+
 ## 部署
 
 - [NodeJS 部署](docs/use/nodejs/README.md)
