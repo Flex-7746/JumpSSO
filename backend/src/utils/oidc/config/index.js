@@ -38,8 +38,11 @@ module.exports = {
       },
 
       postLogoutSuccessSource: async (ctx) => {
-        await ctx.$cache(await ctx.$session("openid"), null);
-        await ctx.$session("openid", null);
+        const openid = await ctx.$session("openid");
+        if (openid) {
+          await ctx.$cache(await ctx.$session("openid"), null);
+          await ctx.$session("openid", null);
+        }
         await ctx.redirect(pathWeb.logout("success"));
       },
     },
@@ -85,6 +88,12 @@ module.exports = {
   },
 
   renderError: (ctx, _out, error) => {
-    ctx.redirect(pathWeb.error({ code: "error", title: error.error, subtitle: error.error_description }));
+    ctx.redirect(
+      pathWeb.error({
+        code: "error",
+        title: error.error || "系统错误",
+        subtitle: error.error_description || "请重试",
+      }),
+    );
   },
 };

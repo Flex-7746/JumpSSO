@@ -1,5 +1,9 @@
 # 更新日志
 
+## 0.2.1
+
+- 修复：从未登录时访问登出页的异常返回
+
 ## 0.2.0
 
 - 新增：登出功能，支持一键登出 JumpSSO，参考：[使用说明](https://github.com/Flex-7746/JumpSSO/tree/main/docs#登出)
