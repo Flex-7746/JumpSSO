@@ -2,7 +2,7 @@
 
 ## 0.2.0
 
-新增：登出功能，支持一键登出 JumpSSO，参考：[使用说明](https://github.com/Flex-7746/JumpSSO/tree/main/docs#登出)
+- 新增：登出功能，支持一键登出 JumpSSO，参考：[使用说明](https://github.com/Flex-7746/JumpSSO/tree/main/docs#登出)
 
 ## 0.1.0
 
