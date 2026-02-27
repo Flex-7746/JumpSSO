@@ -1,8 +1,12 @@
 # 更新日志
 
+## 0.2.0
+
+新增：登出功能，支持一键登出 JumpSSO，参考：[使用说明](https://github.com/Flex-7746/JumpSSO/tree/main/docs#登出)
+
 ## 0.1.0
 
-- 新增映射功能，配置说明：[使用映射功能进行灵活登录](https://github.com/Flex-7746/JumpSSO/blob/main/docs/user/mapping/README.md)
+- 新增：映射功能，配置说明：[使用映射功能进行灵活登录](https://github.com/Flex-7746/JumpSSO/blob/main/docs/user/mapping/README.md)
 
 ## 0.0.3
 
