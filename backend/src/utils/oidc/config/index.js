@@ -1,6 +1,7 @@
 const config = _require("config");
 
 const pathServer = _require("utils/path/server");
+const pathWeb = _require("utils/path/web");
 
 const adapter = require("./adapter");
 const jwks = require("./jwks");
@@ -13,7 +14,36 @@ module.exports = {
 
   pkce: { required: () => false },
   clientBasedCORS: () => true,
-  features: { devInteractions: { enabled: false } },
+  features: {
+    devInteractions: { enabled: false },
+
+    rpInitiatedLogout: {
+      logoutSource: async (ctx, form) => {
+        if (ctx.query.confirm) {
+          await ctx.$cache(ctx.oidc.session.accountId, null);
+
+          ctx.body = `<!DOCTYPE html>
+        <html>
+        <body>
+          ${form}
+          <button id="op.logoutForm.submit" type="submit" form="op.logoutForm" value="yes" name="logout"></button>
+          <script>
+            document.getElementById('op.logoutForm.submit').click()
+          </script>
+        </body>
+        </html>`;
+        } else {
+          await ctx.redirect(pathWeb.logout("confirm"));
+        }
+      },
+
+      postLogoutSuccessSource: async (ctx) => {
+        await ctx.$cache(await ctx.$session("openid"), null);
+        await ctx.$session("openid", null);
+        await ctx.redirect(pathWeb.logout("success"));
+      },
+    },
+  },
 
   cookies: {
     names: {
@@ -55,20 +85,6 @@ module.exports = {
   },
 
   renderError: (ctx, _out, error) => {
-    console.log(error);
-
-    ctx.type = "html";
-    ctx.body = `<!DOCTYPE html>
-    <html>
-    <head>
-      <title>Error</title>
-    </head>
-    <body>
-      <div style="text-align: center; padding: 30px 0">
-        <h1>${error.error}</h1>
-        <h2>${error.error_description}</h2>
-      </div>
-    </body>
-    </html>`;
+    ctx.redirect(pathWeb.error({ code: "error", title: error.error, subtitle: error.error_description }));
   },
 };
