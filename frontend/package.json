@@ -1,5 +1,5 @@
 {
-  "name": "flex_sso",
+  "name": "jumpsso.frontend",
   "scripts": {
     "dev": "vite --mode fat --host",
     "build": "tsc -b && vite build --mode prod",

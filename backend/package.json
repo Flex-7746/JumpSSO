@@ -1,5 +1,5 @@
 {
-  "name": "code.editor.server",
+  "name": "jumpsso.backend",
   "scripts": {
     "dev": "NODE_ENV=development node --watch src/app.js",
     "prod": "NODE_ENV=production node src/app.js"
