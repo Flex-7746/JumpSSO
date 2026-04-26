@@ -82,7 +82,8 @@ const Component = () => {
             const left = (W - width) / 2
             const top = (H - height) / 2
             if (info && i.jump) {
-              const url = i.jump(info, { key: qKey })
+              // const url = i.jump(info, { key: qKey })
+              const url = i.jump()
               if (url) {
                 openWindow.value = window.open(url, '_blank', `popup,width=${width},height=${height},left=${left},top=${top}`) || undefined
               }
