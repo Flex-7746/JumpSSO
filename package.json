@@ -1,6 +1,6 @@
 {
   "name": "jumpsso",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "changelog": "<div>新增：映射功能，更灵活的登录方式</div><div>新增：JumpSSO 登出页</div>",
   "scripts": {
     "install": "npm i --prefix=backend && npm i --prefix=frontend",

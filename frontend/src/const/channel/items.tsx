@@ -2,9 +2,9 @@ import Account from './admin/Account'
 import FeiShu from './admin/FeiShu'
 import DingDing from './admin/DingDing'
 import QiWei from './admin/QiWei'
-import FeiNiu from './admin/FeiNiu'
+// import FeiNiu from './admin/FeiNiu'
 
-import { type ConfigModel } from './model'
+// import { type ConfigModel } from './model'
 
 export default [
   {
@@ -41,20 +41,20 @@ export default [
     admin: QiWei,
     qrcode: true,
   },
-  {
-    label: '飞牛',
-    value: 5,
-    config: 'feiniu_config',
-    color: '#1662E7',
-    admin: FeiNiu,
-    qrcode: false,
-    jump: (config: ConfigModel, params: { key: string }) => {
-      if (config.feiniu) {
-        const { host, clientId } = config.feiniu
-        return `${host}/signin?client_id=${clientId}&redirect_uri=${encodeURIComponent(window.location.origin + `/sign/callback/5/${params.key}`)}&app_name=JumpSSO`
-      } else {
-        return ''
-      }
-    },
-  },
+  // {
+  //   label: '飞牛',
+  //   value: 5,
+  //   config: 'feiniu_config',
+  //   color: '#1662E7',
+  //   admin: FeiNiu,
+  //   qrcode: false,
+  //   jump: (config: ConfigModel, params: { key: string }) => {
+  //     if (config.feiniu) {
+  //       const { host, clientId } = config.feiniu
+  //       return `${host}/signin?client_id=${clientId}&redirect_uri=${encodeURIComponent(window.location.origin + `/sign/callback/5/${params.key}`)}&app_name=JumpSSO`
+  //     } else {
+  //       return ''
+  //     }
+  //   },
+  // },
 ]
